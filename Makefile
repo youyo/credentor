@@ -7,9 +7,9 @@ Version := $(shell git describe --tags --abbrev=0)
 
 ## Setup
 setup:
-	go get -v github.com/Songmu/goxz/cmd/goxz
-	go get -v github.com/tcnksm/ghr
-	go get -v github.com/jstemmer/go-junit-report
+	GO111MODULE=off go get -v github.com/Songmu/goxz/cmd/goxz
+	GO111MODULE=off go get -v github.com/tcnksm/ghr
+	GO111MODULE=off go get -v github.com/jstemmer/go-junit-report
 
 ## Run tests
 test:
