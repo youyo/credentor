@@ -14,6 +14,8 @@ defaults: &defaults
   working_directory: /go/src/github.com/youyo/credentor
   docker:
     - image: circleci/golang:1
+      environment:
+        GO111MODULE: "on"
 
 version: 2
 jobs:
@@ -21,11 +23,23 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - run: mkdir -p /tmp/test-results
-      - run:
+      - restore_cache: &restore_cache
+          name: Restore go modules cache
+          keys:
+            - mod-{{ .Environment.COMMON_CACHE_KEY }}-{{ checksum "go.mod" }}
+      - run: &vendoring
+          name: Vendoring
+          command: make vendoring
+      - save_cache: &save_cache
+          name: Save go modules cache
+          key: mod-{{ .Environment.COMMON_CACHE_KEY }}-{{ checksum "go.mod" }}
+          paths:
+            - /go/pkg/mod/cache
+      - run: &build
           name: Dependency
           command: |
             make setup
+      - run: mkdir -p /tmp/test-results
       - run:
           name: Test
           command: |
@@ -41,14 +55,10 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - run:
-          name: Dependency
-          command: |
-            make setup
-      - run:
-          name: Build
-          command: |
-            make build
+      - restore_cache: *restore_cache
+      - run: *vendoring
+      - save_cache: *save_cache
+      - run: *build
       - run:
           name: Release
           command: |

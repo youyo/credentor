@@ -21,9 +21,13 @@ run:
 	go run \
 		$(Name)/main.go ${OPTION}
 
+## Vendoring
+vendoring:
+	go mod download
+
 ## Build
 build:
-	go get -v
+	go get
 	goxz -os=darwin,linux -arch=amd64 -d=pkg ./credentor
 
 ## Release
