@@ -1,3 +1,7 @@
 .envrc
 __*
 credentor/credentor
+pkg/
+*.zip
+*.tgz
+*.tar.gz
