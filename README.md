@@ -2,8 +2,8 @@
 
 [![Go project version](https://badge.fury.io/go/github.com%2Fyouyo%2Fcredentor.svg)](https://badge.fury.io/go/github.com%2Fyouyo%2Fcredentor)
 [![Go Report Card](https://goreportcard.com/badge/github.com/youyo/credentor)](https://goreportcard.com/report/github.com/youyo/credentor)
-[![CircleCI](https://circleci.com/gh/youyo/credentor/tree/master.svg?style=svg)](https://circleci.com/gh/youyo/credentor/tree/master)
 [![License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](./LICENSE)
+[![CircleCI](https://circleci.com/gh/youyo/credentor/tree/master.svg?style=svg)](https://circleci.com/gh/youyo/credentor/tree/master)
 
 AWS assume role credential wrapper.
 
@@ -19,8 +19,8 @@ For example,
 
 ## Install
 
-Place a `credentor` command to your PATH and set an executable flag.
-Download the latest release from github.  https://github.com/youyo/credentor/releases/latest
+Place a `credentor` command to your PATH and set an executable flag.  
+Download the latest release from github. https://github.com/youyo/credentor/releases/latest
 
 ```console
 # darwin/amd64
@@ -94,5 +94,5 @@ Temporary credentials has expiration time (about 1 hour).
 
 ## References
 
-credentor is inspired by aswrap.
+credentor is inspired by aswrap.  
 Original software is [aswrap](https://github.com/fujiwara/aswrap). https://github.com/fujiwara/aswrap
