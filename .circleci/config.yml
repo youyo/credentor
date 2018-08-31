@@ -35,7 +35,7 @@ jobs:
           key: mod-{{ .Environment.COMMON_CACHE_KEY }}-{{ checksum "go.mod" }}
           paths:
             - /go/pkg/mod/cache
-      - run: &build
+      - run: &setup
           name: Dependency
           command: |
             make setup
@@ -45,7 +45,7 @@ jobs:
           command: |
             trap "go-junit-report </tmp/test-results/go-test.out > /tmp/test-results/go-test-report.xml" EXIT
             make test | tee /tmp/test-results/go-test.out
-      - run:
+      - run: &build
           name: Build
           command: |
             make build
@@ -58,6 +58,7 @@ jobs:
       - restore_cache: *restore_cache
       - run: *vendoring
       - save_cache: *save_cache
+      - run: *setup
       - run: *build
       - run:
           name: Release
